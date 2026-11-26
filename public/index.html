@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Чат о погоде с данными Open-Meteo через MCP.">
+  <title>Погодный агент</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="identity">
+        <span class="brand-mark" aria-hidden="true">☁</span>
+        <span>Погодный агент</span>
+      </div>
+      <span class="source">Open-Meteo <span aria-hidden="true">/</span> MCP</span>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="chat" aria-labelledby="chat-title">
+      <div class="chat-header">
+        <h1 id="chat-title">Чат о погоде</h1>
+        <button class="reset" id="reset" type="button" hidden>Новый диалог</button>
+      </div>
+      <div class="transcript" id="transcript">
+        <div class="welcome" id="welcome">
+          <span class="welcome-icon" aria-hidden="true">☁</span>
+          <h2>Какая сейчас погода?</h2>
+          <p>Назовите город, чтобы узнать текущую погоду или прогноз на завтра.</p>
+          <div class="suggestions" id="initial-suggestions" aria-label="Примеры вопросов">
+            <button type="button" data-prompt="Какая сейчас погода в Екатеринбурге?">Екатеринбург</button>
+            <button type="button" data-prompt="Какая сейчас погода в Казани?">Казань</button>
+          </div>
+        </div>
+        <div id="messages" class="messages" role="log" aria-label="Сообщения" aria-live="polite"></div>
+      </div>
+      <div class="composer">
+        <div class="suggestions followups" id="followups" aria-label="Продолжить диалог" hidden>
+          <button type="button" id="switch-city"></button>
+          <button type="button" data-prompt="А завтра?">А завтра?</button>
+        </div>
+        <form id="ask">
+          <input id="question" name="question" type="text" maxlength="500" required autocomplete="off"
+            aria-label="Вопрос о погоде" placeholder="Напишите вопрос о погоде">
+          <button class="send" id="send" type="submit">Отправить</button>
+        </form>
+      </div>
+    </section>
+
+    <aside class="monitor" aria-labelledby="monitor-title">
+      <div class="monitor-cover">
+        <h2 id="monitor-title">Журнал MCP</h2>
+        <code id="endpoint">weather.chukai.io/mcp</code>
+      </div>
+      <div class="monitor-body">
+        <div class="monitor-header">
+          <h3>Вызовы инструментов</h3>
+          <span class="status" id="status" role="status">Ожидание</span>
+        </div>
+        <p class="empty-log" id="empty-log">Журнал заполнится после запроса о погоде.</p>
+        <ol class="trace" id="trace" aria-label="Вызовы MCP"></ol>
+        <p class="model" id="model"></p>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>

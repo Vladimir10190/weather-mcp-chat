@@ -24,7 +24,7 @@ npm.cmd start
 
 ## Развёртывание в ChatGPT Sites
 
-`npm.cmd run build` собирает интерфейс и серверную часть в `dist/server/index.js`. В настройках приватного сайта ключ VseLLM хранится в секрете `VSELLM_API_KEY`. Для запросов в чат требуется вход через ChatGPT.
+`npm.cmd run build` собирает интерфейс и серверную часть в `dist/server/index.js`. Ключ VseLLM хранится в секрете Sites `VSELLM_API_KEY`. При публичном доступе посетители могут пользоваться чатом без входа в ChatGPT.
 
 ## Проверка
 

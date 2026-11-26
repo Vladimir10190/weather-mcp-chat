@@ -23,9 +23,6 @@ export default {
     if (request.method !== 'POST' || path !== '/api/chat') {
       return Response.json({ error: 'Страница не найдена.' }, { status: 404, headers: jsonHeaders });
     }
-    if (!request.headers.get('oai-authenticated-user-id')) {
-      return Response.json({ error: 'Войдите через ChatGPT.' }, { status: 401, headers: jsonHeaders });
-    }
     if (request.headers.get('content-type')?.split(';')[0] !== 'application/json') {
       return Response.json({ error: 'Ожидается JSON.' }, { status: 415, headers: jsonHeaders });
     }

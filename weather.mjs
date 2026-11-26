@@ -93,7 +93,7 @@ function formatWeather(place, period, weather) {
   return `${place.name}. ${heading} — ${parts.join(', ')}.${localTime}`;
 }
 
-export function createWeatherAgent(plan, mcpUrl) {
+export function createWeatherAgent(plan, mcpUrl, jsonSchemaValidator) {
   return async (question, previous, emitTrace) => {
     const transport = new StreamableHTTPClientTransport(new URL(mcpUrl), {
       fetch: (input, init) => {
@@ -102,7 +102,7 @@ export function createWeatherAgent(plan, mcpUrl) {
         return fetch(input, { ...init, signal });
       },
     });
-    const client = new Client({ name: 'weather-mcp-chat', version: '1.0.0' });
+    const client = new Client({ name: 'weather-mcp-chat', version: '1.0.0' }, { jsonSchemaValidator });
     let city;
     let period;
 

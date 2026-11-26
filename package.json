@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.9.0" },
+  "engines": {
+    "node": ">=22.9.0"
+  },
   "scripts": {
     "start": "node --env-file-if-exists=.env server.mjs",
-    "verify": "node --env-file-if-exists=.env scripts/verify.mjs"
+    "verify": "node --env-file-if-exists=.env scripts/verify.mjs",
+    "build": "node scripts/build-site.mjs"
   },
   "dependencies": {
+    "@cfworker/json-schema": "4.1.1",
     "@modelcontextprotocol/sdk": "1.32.2"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   }
 }
